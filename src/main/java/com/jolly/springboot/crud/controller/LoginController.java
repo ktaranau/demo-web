@@ -1,6 +1,7 @@
 package com.jolly.springboot.crud.controller;
 
 import com.jolly.springboot.crud.entity.Employee;
+import com.jolly.springboot.crud.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +23,8 @@ public class LoginController {
 
     @GetMapping("/showRegistrationPage")
     public String showRegistrationPage(Model model) {
-        model.addAttribute("employee", new Employee());
-
+        model.addAttribute("employee", new User());
         return "registration";
     }
-
-
-
-
 
 }
