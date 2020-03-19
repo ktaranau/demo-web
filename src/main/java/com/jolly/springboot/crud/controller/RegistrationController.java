@@ -8,18 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 @Controller
-@RequestMapping("/authorization")
-public class LoginController {
+@RequestMapping("/registration")
+public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage(){
-        return "fancy-login";
+        return "login";
     }
 
     @GetMapping("/access-denied")
@@ -35,18 +33,16 @@ public class LoginController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") User user, BindingResult result){
-
         User existing = userService.findByEmail(user.getEmail());
         if (existing != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
-
         if (result.hasErrors()){
-            return "fancy-login";
+            return "registration";
         }
-
         userService.save(user);
-        return "fancy-login";
+        return "redirect:/registration?success";
     }
+
 
 }

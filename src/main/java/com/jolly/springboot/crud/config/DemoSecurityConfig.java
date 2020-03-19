@@ -42,7 +42,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder  passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -53,18 +53,18 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/employees/delete").hasRole("ADMIN")
-                .antMatchers("/employees/**").hasRole("EMPLOYEE")
+                .antMatchers("/employees/**").hasRole("USER")
                 .antMatchers("/resources/**").permitAll()
-                .antMatchers("/authorization").permitAll()
+                .antMatchers("/registration”").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/authorization/showMyLoginPage")
-                .loginProcessingUrl("/authenticateTheUser")
+                .loginPage("/login")
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
+                .logoutSuccessUrl("/login?logout")
                 .permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");

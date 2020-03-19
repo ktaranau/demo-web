@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -17,6 +17,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+
 
     @GetMapping("/list")
     public String listEmployees(Model model){
