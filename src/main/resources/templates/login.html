@@ -29,6 +29,11 @@
 						Invalid username or password.
 					</div>
 				</div>
+				<div th:if="${param.r_success}">
+					<div class="alert alert-success">
+						You've successfully registered.
+					</div>
+				</div>
 				<div th:if="${param.logout}">
 					<div class="alert alert-info">
 						You have been logged out.

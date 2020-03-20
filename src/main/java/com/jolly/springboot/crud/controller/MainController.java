@@ -17,7 +17,7 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("/employee")
+    @GetMapping("/employees")
     public String employeeIndex(){
         return "index";
     }
